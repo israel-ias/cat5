@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(docker --version)",
+      "PowerShell(docker rm -f cats-rsvp-test 2>$null; docker run -d --name cats-rsvp-test -p 18080:80 cats-rsvp:latest; Start-Sleep 2; \\(Invoke-WebRequest -Uri http://127.0.0.1:18080/ -UseBasicParsing\\).StatusCode; \\(Invoke-WebRequest -Uri http://127.0.0.1:18080/styles.css -UseBasicParsing\\).StatusCode; \\(Invoke-WebRequest -Uri http://127.0.0.1:18080/script.js -UseBasicParsing\\).StatusCode; \\(Invoke-WebRequest -Uri http://127.0.0.1:18080/assets/invite.png -UseBasicParsing\\).StatusCode; docker rm -f cats-rsvp-test | Out-Null)"
+    ]
+  }
+}
