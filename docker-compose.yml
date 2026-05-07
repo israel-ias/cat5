@@ -9,7 +9,7 @@ services:
     # networks:
     #   - proxy
     ports:
-      - "8080:80"  # host:container — change host port to whatever's free on the VPS
+      - "3001:80"  # host:container — change host port to whatever's free on the VPS
 
     # ── Reverse proxy hints ──────────────────────────────────────────────
     # Nginx Proxy Manager: leave the `ports` mapping above and add a Proxy Host
