@@ -2,29 +2,13 @@ services:
   cats-rsvp:
     build: .
     image: cats-rsvp:latest
+    networks:
+      - nginx-proxy
     container_name: cats-rsvp
     restart: unless-stopped
-    # If your reverse proxy lives on a shared docker network (e.g. nginx-proxy-manager,
-    # Traefik), attach to it here and remove the `ports:` block below.
-    # networks:
-    #   - proxy
     ports:
       - "3001:80"  # host:container — change host port to whatever's free on the VPS
 
-    # ── Reverse proxy hints ──────────────────────────────────────────────
-    # Nginx Proxy Manager: leave the `ports` mapping above and add a Proxy Host
-    #   in NPM pointing to http://<vps-ip>:8080 (or http://cats-rsvp:80 if NPM is
-    #   on the same docker network), domain cat5.iasdg.cloud, request a Let's
-    #   Encrypt cert from the SSL tab.
-    #
-    # Traefik (uncomment and remove `ports`):
-    # labels:
-    #   - "traefik.enable=true"
-    #   - "traefik.http.routers.cats-rsvp.rule=Host(`cat5.iasdg.cloud`)"
-    #   - "traefik.http.routers.cats-rsvp.entrypoints=websecure"
-    #   - "traefik.http.routers.cats-rsvp.tls.certresolver=letsencrypt"
-    #   - "traefik.http.services.cats-rsvp.loadbalancer.server.port=80"
-
-# networks:
-#   proxy:
-#     external: true
+networks:
+  nginx-proxy:
+    external: true
